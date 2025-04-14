@@ -4,8 +4,10 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
-import { useDesignMode } from "./contexts/DesignModeContext";
+import { useState } from "react";
+import { DesignModeContext } from "@/contexts/DesignModeContext";
 
+// Routes component
 function Router() {
   return (
     <Switch>
@@ -15,23 +17,30 @@ function Router() {
   );
 }
 
-// This component uses the design mode context
-function AppContent() {
-  const { isUXMode } = useDesignMode();
+// Main App component
+function App() {
+  // Create the design mode state directly in the App component
+  const [isUXMode, setIsUXMode] = useState(false);
+  
+  // Toggle function
+  const toggleMode = () => {
+    setIsUXMode(prevMode => !prevMode);
+  };
+  
+  // Create the context value
+  const designModeValue = {
+    isUXMode,
+    toggleMode
+  };
   
   return (
-    <div className={`min-h-screen ${isUXMode ? 'ux-mode' : ''}`}>
-      <Router />
-      <Toaster />
-    </div>
-  );
-}
-
-// This component does not use the design mode context directly
-function App() {
-  return (
     <QueryClientProvider client={queryClient}>
-      <AppContent />
+      <DesignModeContext.Provider value={designModeValue}>
+        <div className={`min-h-screen ${isUXMode ? 'ux-mode' : ''}`}>
+          <Router />
+          <Toaster />
+        </div>
+      </DesignModeContext.Provider>
     </QueryClientProvider>
   );
 }

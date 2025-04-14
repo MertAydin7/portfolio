@@ -1,44 +1,18 @@
-import { createContext, useState, useContext, ReactNode, useEffect } from "react";
+import { createContext, useContext } from "react";
 
-interface DesignModeContextType {
+// Define the shape of our context
+export interface DesignModeContextType {
   isUXMode: boolean;
   toggleMode: () => void;
 }
 
-// Create the context with a default value to satisfy TypeScript
-const DesignModeContext = createContext<DesignModeContextType>({
+// Create the context with a default value
+export const DesignModeContext = createContext<DesignModeContextType>({
   isUXMode: false,
   toggleMode: () => console.warn("No DesignModeProvider found")
 });
 
-export function DesignModeProvider({ children }: { children: ReactNode }) {
-  const [isUXMode, setIsUXMode] = useState<boolean>(false);
-  const [mounted, setMounted] = useState(false);
-
-  // Use useEffect to handle client-side rendering properly
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  const toggleMode = () => {
-    setIsUXMode((prevMode) => !prevMode);
-  };
-
-  // Create the context value object just once (optimization)
-  const contextValue = {
-    isUXMode,
-    toggleMode
-  };
-
-  // Render children only after mounting to avoid hydration issues
-  return (
-    <DesignModeContext.Provider value={contextValue}>
-      {mounted ? children : null}
-    </DesignModeContext.Provider>
-  );
-}
-
+// Hook to use the context
 export function useDesignMode(): DesignModeContextType {
-  const context = useContext(DesignModeContext);
-  return context;
+  return useContext(DesignModeContext);
 }
