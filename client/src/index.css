@@ -1,0 +1,212 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Poppins:wght@300;400;500;700&family=Inter:wght@400;500;600;700&family=Public+Sans:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Default UI Mode */
+    --primary-color: #FF3366;
+    --secondary-color: #6C63FF;
+    --accent-color: #00C9A7;
+    --background-color: #FFFFFF;
+    --text-color: #1A1A1A;
+    --link-color: #FF3366;
+    --card-bg: #FFFFFF;
+    --heading-font: 'Playfair Display', serif;
+    --body-font: 'Poppins', sans-serif;
+    --transition-speed: 0.5s;
+    
+    /* ShadCN Variables */
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 340 97% 60%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 250 94% 69%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 170 100% 39%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 340 97% 60%;
+    --radius: 0.5rem;
+  }
+
+  .ux-mode {
+    /* UX Mode */
+    --primary-color: #2B2D42;
+    --secondary-color: #4A4E69;
+    --accent-color: #4A4E69;
+    --background-color: #F8F9FA;
+    --text-color: #212529;
+    --link-color: #0066CC;
+    --card-bg: #FFFFFF;
+    --heading-font: 'Inter', sans-serif;
+    --body-font: 'Public Sans', sans-serif;
+    
+    /* ShadCN Variables */
+    --background: 210 17% 98%;
+    --foreground: 222 47% 11%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+    --primary: 224 29% 21%;
+    --primary-foreground: 210 17% 98%;
+    --secondary: 228 14% 36%;
+    --secondary-foreground: 210 17% 98%;
+    --muted: 210 16% 96%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 228 14% 36%;
+    --accent-foreground: 210 17% 98%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 17% 98%;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 224 29% 21%;
+  }
+
+  body {
+    @apply font-sans antialiased;
+    font-family: var(--body-font);
+    color: var(--text-color);
+    background-color: var(--background-color);
+    transition: background-color var(--transition-speed), color var(--transition-speed);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--heading-font);
+    transition: font-family var(--transition-speed);
+  }
+
+  a {
+    color: var(--link-color);
+    transition: color var(--transition-speed);
+  }
+
+  section {
+    transition: all var(--transition-speed);
+  }
+}
+
+@layer components {
+  .ui-element {
+    transition: all var(--transition-speed);
+  }
+  
+  .btn-ui {
+    @apply px-6 py-3 rounded-full font-semibold text-white shadow-lg;
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    box-shadow: 0 5px 15px rgba(255, 51, 102, 0.3);
+    transition: all var(--transition-speed);
+  }
+  
+  .btn-ui:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(255, 51, 102, 0.4);
+  }
+  
+  .btn-ux {
+    @apply px-4 py-2 rounded-md font-medium text-white;
+    background-color: var(--link-color);
+    transition: all var(--transition-speed);
+  }
+  
+  .btn-ux:hover {
+    @apply outline-none;
+    background-color: #0055AA;
+    box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.3);
+  }
+  
+  /* Project card styles */
+  .ui-project-card {
+    @apply rounded-lg overflow-hidden transition-all;
+    box-shadow: 0 10px 30px rgba(108, 99, 255, 0.2);
+    transform: translateY(0);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .ui-project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(108, 99, 255, 0.3);
+  }
+  
+  .ux-project-card {
+    @apply rounded-lg overflow-hidden transition-all;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  }
+  
+  .ux-project-card:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Form styles */
+  .ui-form-control {
+    @apply w-full p-3 rounded-lg mb-4 transition-all;
+    border: 2px solid #e5e7eb;
+    background-color: white;
+  }
+  
+  .ui-form-control:focus {
+    @apply outline-none;
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.2);
+  }
+  
+  .ux-form-control {
+    @apply w-full p-3 rounded-md mb-4 transition-all;
+    border: 2px solid #ced4da;
+    background-color: white;
+  }
+  
+  .ux-form-control:focus {
+    @apply outline-none;
+    border-color: var(--link-color);
+    box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.2);
+  }
+  
+  /* Nav styles */
+  .ui-nav .nav-link {
+    @apply relative font-medium;
+  }
+  
+  .ui-nav .nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: var(--primary-color);
+    transition: width 0.3s;
+  }
+  
+  .ui-nav .nav-link:hover::after {
+    width: 100%;
+  }
+  
+  .ux-nav .nav-link {
+    @apply py-2 border-b-2 border-transparent;
+  }
+  
+  .ux-nav .nav-link:hover,
+  .ux-nav .nav-link:focus {
+    border-bottom: 2px solid var(--link-color);
+  }
+  
+  /* Indicator styles */
+  .difference-indicator {
+    @apply inline-flex items-center justify-center w-4 h-4 rounded-full text-white text-xs cursor-help ml-2;
+    background-color: var(--accent-color);
+  }
+}
