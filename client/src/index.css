@@ -6,23 +6,25 @@
 
 @layer base {
   :root {
-    /* Default UI Mode - Vibrant Dribbble-inspired design */
-    --primary-color: #FF3366;
+    /* UI Mode - Exaggerated visual design with poor usability */
+    --primary-color: #FF2D55;
     --secondary-color: #6C63FF;
-    --accent-color: #00C9A7;
+    --accent-color: #00F7B5;
     --background-color: #FFFFFF;
     --section-bg: #FAFAFA;
     --text-color: #1A1A1A;
-    --link-color: #FF3366;
+    --text-light: #A0A0A0; /* Low contrast text */
+    --link-color: #FF2D55;
     --card-bg: #FFFFFF;
     --heading-font: 'Playfair Display', serif;
     --body-font: 'Poppins', sans-serif;
-    --transition-speed: 0.5s;
-    --spacing: 6rem;
+    --transition-speed: 0.8s; /* Slow transitions */
+    --spacing: 8rem; /* Excessive spacing */
     --container-padding: 2rem;
-    --border-radius: 1rem;
+    --border-radius: 1.5rem; /* Exaggerated rounded corners */
     --button-radius: 9999px;
-    --shadow: 0 10px 30px rgba(108, 99, 255, 0.15);
+    --shadow: 0 15px 40px rgba(108, 99, 255, 0.25); /* Heavy shadows */
+    --text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
     
     /* ShadCN Variables */
     --background: 0 0% 100%;
@@ -48,43 +50,45 @@
   }
 
   .ux-mode {
-    /* UX Mode - Gov.UK-inspired practical design */
+    /* UX Mode - Bare minimum aesthetics with excellent usability */
     --primary-color: #1D70B8;
-    --secondary-color: #505A5F;
-    --accent-color: #28A197;
-    --background-color: #F8F9FA;
-    --section-bg: #FFFFFF;
+    --secondary-color: #000000;
+    --accent-color: #d53880;
+    --background-color: #FFFFFF;
+    --section-bg: #F3F2F1;
     --text-color: #0B0C0C;
+    --text-light: #505a5f;
     --link-color: #1D70B8;
     --card-bg: #FFFFFF;
     --heading-font: 'Inter', sans-serif;
     --body-font: 'Public Sans', sans-serif;
-    --transition-speed: 0.5s;
-    --spacing: 3rem;
+    --transition-speed: 0.2s; /* Fast, efficient transitions */
+    --spacing: 2rem; /* Efficient spacing */
     --container-padding: 1rem;
-    --border-radius: 0.25rem;
-    --button-radius: 0.25rem;
-    --shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+    --border-radius: 0; /* No rounded corners */
+    --button-radius: 0;
+    --shadow: none; /* No shadows */
+    --text-shadow: none;
     
     /* ShadCN Variables */
-    --background: 210 17% 98%;
-    --foreground: 222 47% 11%;
+    --background: 0 0% 100%;
+    --foreground: 0 0% 0%;
     --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
+    --card-foreground: 0 0% 0%;
     --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
+    --popover-foreground: 0 0% 0%;
     --primary: 210 83% 41%;
-    --primary-foreground: 210 17% 98%;
-    --secondary: 210 16% 34%;
-    --secondary-foreground: 210 17% 98%;
-    --muted: 210 16% 96%;
-    --muted-foreground: 215 20% 65%;
-    --accent: 183 56% 39%;
-    --accent-foreground: 210 17% 98%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 0%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+    --accent: 330 81% 51%;
+    --accent-foreground: 0 0% 100%;
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 17% 98%;
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
     --ring: 210 83% 41%;
   }
 
