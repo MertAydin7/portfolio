@@ -6,17 +6,23 @@
 
 @layer base {
   :root {
-    /* Default UI Mode */
+    /* Default UI Mode - Vibrant Dribbble-inspired design */
     --primary-color: #FF3366;
     --secondary-color: #6C63FF;
     --accent-color: #00C9A7;
     --background-color: #FFFFFF;
+    --section-bg: #FAFAFA;
     --text-color: #1A1A1A;
     --link-color: #FF3366;
     --card-bg: #FFFFFF;
     --heading-font: 'Playfair Display', serif;
     --body-font: 'Poppins', sans-serif;
     --transition-speed: 0.5s;
+    --spacing: 6rem;
+    --container-padding: 2rem;
+    --border-radius: 1rem;
+    --button-radius: 9999px;
+    --shadow: 0 10px 30px rgba(108, 99, 255, 0.15);
     
     /* ShadCN Variables */
     --background: 0 0% 100%;
@@ -42,16 +48,23 @@
   }
 
   .ux-mode {
-    /* UX Mode */
-    --primary-color: #2B2D42;
-    --secondary-color: #4A4E69;
-    --accent-color: #4A4E69;
+    /* UX Mode - Gov.UK-inspired practical design */
+    --primary-color: #1D70B8;
+    --secondary-color: #505A5F;
+    --accent-color: #28A197;
     --background-color: #F8F9FA;
-    --text-color: #212529;
-    --link-color: #0066CC;
+    --section-bg: #FFFFFF;
+    --text-color: #0B0C0C;
+    --link-color: #1D70B8;
     --card-bg: #FFFFFF;
     --heading-font: 'Inter', sans-serif;
     --body-font: 'Public Sans', sans-serif;
+    --transition-speed: 0.5s;
+    --spacing: 3rem;
+    --container-padding: 1rem;
+    --border-radius: 0.25rem;
+    --button-radius: 0.25rem;
+    --shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
     
     /* ShadCN Variables */
     --background: 210 17% 98%;
@@ -60,19 +73,19 @@
     --card-foreground: 222 47% 11%;
     --popover: 0 0% 100%;
     --popover-foreground: 222 47% 11%;
-    --primary: 224 29% 21%;
+    --primary: 210 83% 41%;
     --primary-foreground: 210 17% 98%;
-    --secondary: 228 14% 36%;
+    --secondary: 210 16% 34%;
     --secondary-foreground: 210 17% 98%;
     --muted: 210 16% 96%;
     --muted-foreground: 215 20% 65%;
-    --accent: 228 14% 36%;
+    --accent: 183 56% 39%;
     --accent-foreground: 210 17% 98%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 17% 98%;
     --border: 214 32% 91%;
     --input: 214 32% 91%;
-    --ring: 224 29% 21%;
+    --ring: 210 83% 41%;
   }
 
   body {
@@ -80,21 +93,74 @@
     font-family: var(--body-font);
     color: var(--text-color);
     background-color: var(--background-color);
-    transition: background-color var(--transition-speed), color var(--transition-speed);
+    transition: all var(--transition-speed);
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--heading-font);
-    transition: font-family var(--transition-speed);
+    transition: all var(--transition-speed);
   }
 
   a {
     color: var(--link-color);
-    transition: color var(--transition-speed);
+    transition: all var(--transition-speed);
   }
 
   section {
     transition: all var(--transition-speed);
+    padding: var(--spacing) 0;
+  }
+  
+  /* UI Mode specific base styling */
+  :root:not(.ux-mode) h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl font-black;
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1.5rem;
+  }
+  
+  :root:not(.ux-mode) h2 {
+    @apply text-3xl md:text-4xl font-extrabold;
+    margin-bottom: 1.5rem;
+  }
+  
+  :root:not(.ux-mode) section {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  :root:not(.ux-mode) section:nth-child(odd) {
+    background-color: var(--section-bg);
+  }
+  
+  :root:not(.ux-mode) section:before {
+    content: '';
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, rgba(108, 99, 255, 0.1), rgba(0, 201, 167, 0.1));
+    top: -150px;
+    right: -150px;
+    z-index: 0;
+  }
+  
+  /* UX Mode specific base styling */
+  .ux-mode h1 {
+    @apply text-3xl md:text-4xl font-bold;
+    color: var(--text-color);
+    margin-bottom: 1rem;
+  }
+  
+  .ux-mode h2 {
+    @apply text-2xl md:text-3xl font-semibold;
+    margin-bottom: 1rem;
+  }
+  
+  .ux-mode section {
+    border-bottom: 1px solid #E5E7EB;
   }
 }
 
@@ -103,57 +169,152 @@
     transition: all var(--transition-speed);
   }
   
+  .container {
+    @apply mx-auto px-4;
+    max-width: 1200px;
+    padding: 0 var(--container-padding);
+  }
+  
+  /* Button styles */
   .btn-ui {
-    @apply px-6 py-3 rounded-full font-semibold text-white shadow-lg;
+    @apply px-6 py-3 font-semibold text-white inline-block;
     background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-    box-shadow: 0 5px 15px rgba(255, 51, 102, 0.3);
-    transition: all var(--transition-speed);
+    border-radius: var(--button-radius);
+    box-shadow: 0 10px 25px rgba(255, 51, 102, 0.3);
+    transform: translateY(0);
+    transition: all 0.3s ease;
   }
   
   .btn-ui:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(255, 51, 102, 0.4);
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(255, 51, 102, 0.4);
   }
   
   .btn-ux {
-    @apply px-4 py-2 rounded-md font-medium text-white;
-    background-color: var(--link-color);
-    transition: all var(--transition-speed);
+    @apply px-4 py-2 font-medium text-white inline-block;
+    background-color: var(--primary-color);
+    border-radius: var(--button-radius);
+    box-shadow: none;
+    transition: all 0.2s ease;
   }
   
   .btn-ux:hover {
-    @apply outline-none;
-    background-color: #0055AA;
-    box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.3);
+    background-color: #155C96;
+  }
+  
+  .btn-ux:focus {
+    outline: 3px solid #FFDD00;
+    outline-offset: 2px;
+  }
+  
+  /* Hero section styles */
+  :root:not(.ux-mode) .hero-section {
+    @apply min-h-[90vh] flex items-center;
+    background: radial-gradient(circle at top right, rgba(108, 99, 255, 0.1) 0%, rgba(255, 51, 102, 0.05) 50%, transparent 100%);
+  }
+  
+  .ux-mode .hero-section {
+    @apply min-h-[60vh] flex items-center;
+    background: none;
   }
   
   /* Project card styles */
   .ui-project-card {
-    @apply rounded-lg overflow-hidden transition-all;
-    box-shadow: 0 10px 30px rgba(108, 99, 255, 0.2);
+    @apply rounded-lg overflow-hidden relative;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
     transform: translateY(0);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: all 0.3s ease;
   }
   
   .ui-project-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 40px rgba(108, 99, 255, 0.3);
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(108, 99, 255, 0.2);
+    z-index: 1;
+  }
+  
+  .ui-project-card .project-image {
+    height: 220px;
+    overflow: hidden;
+  }
+  
+  .ui-project-card .project-image img {
+    @apply w-full h-full object-cover;
+    transition: transform 0.6s ease;
+  }
+  
+  .ui-project-card:hover .project-image img {
+    transform: scale(1.1);
+  }
+  
+  .ui-project-card .project-content {
+    @apply p-6;
+  }
+  
+  .ui-project-card .project-title {
+    @apply text-xl font-bold mb-2;
+    color: var(--primary-color);
+  }
+  
+  .ui-project-card .project-category {
+    @apply inline-block px-3 py-1 rounded-full text-xs font-medium mb-3;
+    background: rgba(108, 99, 255, 0.1);
+    color: var(--secondary-color);
   }
   
   .ux-project-card {
-    @apply rounded-lg overflow-hidden transition-all;
+    @apply rounded-md overflow-hidden;
+    border-radius: var(--border-radius);
     border: 1px solid #e5e7eb;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    box-shadow: var(--shadow);
+    transition: box-shadow 0.2s ease;
   }
   
   .ux-project-card:hover {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   }
   
+  .ux-project-card:focus-within {
+    outline: 3px solid #FFDD00;
+    outline-offset: 2px;
+  }
+  
+  .ux-project-card .project-image {
+    height: 180px;
+    overflow: hidden;
+  }
+  
+  .ux-project-card .project-content {
+    @apply p-4;
+  }
+  
+  .ux-project-card .project-title {
+    @apply text-lg font-semibold mb-1;
+    color: var(--text-color);
+  }
+  
+  .ux-project-card .project-category {
+    @apply inline-block px-2 py-0.5 rounded-sm text-xs font-medium mb-2;
+    background: #E5E7EB;
+    color: var(--text-color);
+  }
+  
+  /* Skills styles */
+  .ui-skills-grid {
+    @apply grid gap-8;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+  
+  .ux-skills-grid {
+    @apply grid gap-4;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+  
   /* Form styles */
   .ui-form-control {
-    @apply w-full p-3 rounded-lg mb-4 transition-all;
-    border: 2px solid #e5e7eb;
+    @apply w-full p-4 mb-5 transition-all;
+    border: 2px solid rgba(108, 99, 255, 0.2);
+    border-radius: var(--border-radius);
     background-color: white;
   }
   
@@ -164,20 +325,26 @@
   }
   
   .ux-form-control {
-    @apply w-full p-3 rounded-md mb-4 transition-all;
-    border: 2px solid #ced4da;
+    @apply w-full p-3 mb-4 transition-all;
+    border: 2px solid #0B0C0C;
+    border-radius: var(--border-radius);
     background-color: white;
   }
   
   .ux-form-control:focus {
     @apply outline-none;
-    border-color: var(--link-color);
-    box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.2);
+    outline: 3px solid #FFDD00;
+    outline-offset: 0;
   }
   
   /* Nav styles */
+  .ui-nav {
+    @apply flex space-x-8;
+  }
+  
   .ui-nav .nav-link {
-    @apply relative font-medium;
+    @apply relative font-medium py-2;
+    color: var(--text-color);
   }
   
   .ui-nav .nav-link::after {
@@ -185,7 +352,7 @@
     position: absolute;
     width: 0;
     height: 2px;
-    bottom: -4px;
+    bottom: 0;
     left: 0;
     background-color: var(--primary-color);
     transition: width 0.3s;
@@ -195,18 +362,78 @@
     width: 100%;
   }
   
+  .ux-nav {
+    @apply flex space-x-6;
+  }
+  
   .ux-nav .nav-link {
-    @apply py-2 border-b-2 border-transparent;
+    @apply py-2 px-1 font-medium;
+    color: var(--text-color);
+    border-bottom: 4px solid transparent;
+    transition: border-color 0.2s ease;
   }
   
   .ux-nav .nav-link:hover,
   .ux-nav .nav-link:focus {
-    border-bottom: 2px solid var(--link-color);
+    border-bottom: 4px solid var(--primary-color);
+    text-decoration: underline;
+  }
+  
+  /* Header styles */
+  :root:not(.ux-mode) .site-header {
+    @apply py-6;
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+  }
+  
+  .ux-mode .site-header {
+    @apply py-4;
+    background-color: var(--background-color);
+    border-bottom: 1px solid #E5E7EB;
+  }
+  
+  /* Footer styles */
+  :root:not(.ux-mode) .site-footer {
+    @apply py-12;
+    background: linear-gradient(to right, #1A1A1A, #333333);
+    color: white;
+  }
+  
+  .ux-mode .site-footer {
+    @apply py-8;
+    background-color: #1D1D1D;
+    color: white;
   }
   
   /* Indicator styles */
   .difference-indicator {
     @apply inline-flex items-center justify-center w-4 h-4 rounded-full text-white text-xs cursor-help ml-2;
     background-color: var(--accent-color);
+  }
+  
+  /* Contact section styles */
+  :root:not(.ux-mode) .contact-section {
+    background: linear-gradient(135deg, rgba(255, 51, 102, 0.05) 0%, rgba(108, 99, 255, 0.1) 100%);
+  }
+  
+  .ux-mode .contact-section {
+    background-color: var(--section-bg);
+  }
+  
+  /* About section styles */
+  :root:not(.ux-mode) .about-section {
+    position: relative;
+  }
+  
+  :root:not(.ux-mode) .about-section:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(0, 201, 167, 0.1), transparent 70%);
+    z-index: 0;
   }
 }

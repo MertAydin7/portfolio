@@ -18,34 +18,45 @@ export function Header() {
   }, []);
 
   return (
-    <header className={`py-6 sticky top-0 z-50 ui-element ${isScrolled ? 'shadow-md' : ''}`} style={{ backgroundColor: 'var(--background-color)' }}>
-      <div className="container mx-auto px-4 md:px-8">
+    <header className={`sticky top-0 z-50 site-header ${isScrolled ? 'shadow-md' : ''}`}>
+      <div className="container">
         <div className="flex justify-between items-center">
           {/* Logo */}
           <Link href="/">
-            <a className="text-2xl md:text-3xl font-bold">
-              <span className="ui-element" style={{ color: "var(--primary-color)" }}>
-                Design
-              </span>
-              <span className="ui-element" style={{ color: "var(--secondary-color)" }}>
-                Portfolio
-              </span>
-            </a>
+            <div className="text-2xl md:text-3xl font-bold cursor-pointer">
+              {isUXMode ? (
+                // UX Mode Logo - Simple, focused on clarity
+                <span className="text-[var(--primary-color)]">
+                  Portfolio
+                </span>
+              ) : (
+                // UI Mode Logo - Creative with gradient effect
+                <span>
+                  <span className="ui-element bg-gradient-to-r from-[var(--primary-color)] to-[var(--secondary-color)] bg-clip-text text-transparent">
+                    Design
+                  </span>
+                  <span className="ui-element text-[var(--accent-color)]">
+                    Portfolio
+                  </span>
+                </span>
+              )}
+            </div>
           </Link>
 
           {/* Mobile Menu Toggle */}
           <div className="md:hidden">
             <button 
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2"
+              className={`p-2 ${isUXMode ? 'rounded-md border border-gray-300' : 'text-[var(--primary-color)]'}`}
+              aria-label="Toggle menu"
             >
-              {mobileMenuOpen ? <X /> : <Menu />}
+              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
 
           {/* Desktop Navigation */}
           <nav className={`hidden md:block ${isUXMode ? "ux-nav" : "ui-nav"}`}>
-            <ul className="flex space-x-6">
+            <ul className="flex">
               <li>
                 <a href="#about" className="nav-link">
                   About
@@ -70,16 +81,19 @@ export function Header() {
           </nav>
 
           {/* Mode Toggle */}
-          <div className="hidden md:block">
+          <div className="hidden md:flex items-center">
             <ModeToggle />
+            <span className="ml-3 text-sm text-gray-500">
+              {isUXMode ? "UX Mode" : "UI Mode"}
+            </span>
           </div>
         </div>
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div className="md:hidden mt-4 pb-2">
+          <div className={`md:hidden mt-4 pb-2 ${isUXMode ? 'border-t border-gray-200 pt-2' : ''}`}>
             <nav className={`${isUXMode ? "ux-nav" : "ui-nav"}`}>
-              <ul className="flex flex-col space-y-3">
+              <ul className={`flex flex-col ${isUXMode ? 'space-y-2' : 'space-y-4'}`}>
                 <li>
                   <a href="#about" className="nav-link block" onClick={() => setMobileMenuOpen(false)}>
                     About
@@ -102,8 +116,11 @@ export function Header() {
                 </li>
               </ul>
             </nav>
-            <div className="mt-4">
+            <div className={`${isUXMode ? 'mt-3 pt-3 border-t border-gray-200' : 'mt-5'} flex items-center`}>
               <ModeToggle />
+              <span className="ml-3 text-sm text-gray-500">
+                {isUXMode ? "UX Mode" : "UI Mode"}
+              </span>
             </div>
           </div>
         )}
