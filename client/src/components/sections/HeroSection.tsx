@@ -1,10 +1,10 @@
 import { motion } from "framer-motion";
 import { useDesignMode } from "@/contexts/DesignModeContext";
 import { Tooltip } from "@/components/ui/tooltip";
-import { InfoIcon, ArrowRight, ChevronDown, AlertTriangle } from "lucide-react";
+import { InfoIcon, ArrowRight, ChevronDown, AlertTriangle, Code, LayoutPanelLeft, MousePointerClick } from "lucide-react";
 
 export function HeroSection() {
-  const { isUXMode } = useDesignMode();
+  const { isUXMode, isUIMode, isBalancedMode } = useDesignMode();
 
   // UI Mode animations - extremely exaggerated and flashy
   const uiAnimations = {
@@ -79,11 +79,54 @@ export function HeroSection() {
     }
   };
 
-  // Choose which animation set to use
-  const animations = isUXMode ? uxAnimations : uiAnimations;
+  // Balanced Mode animations - moderate, purposeful animations
+  const balancedAnimations = {
+    heading: {
+      initial: { opacity: 0, y: 20 },
+      animate: { opacity: 1, y: 0 },
+      transition: { duration: 0.5, ease: "easeOut" }
+    },
+    paragraph: {
+      initial: { opacity: 0, y: 15 },
+      animate: { opacity: 1, y: 0 },
+      transition: { duration: 0.5, delay: 0.1, ease: "easeOut" }
+    },
+    badge: {
+      initial: { opacity: 0 },
+      animate: { opacity: 1 },
+      transition: { duration: 0.4, delay: 0.2 }
+    },
+    buttons: {
+      initial: { opacity: 0, y: 10 },
+      animate: { opacity: 1, y: 0 },
+      transition: { duration: 0.4, delay: 0.3 }
+    },
+    image: {
+      initial: { opacity: 0 },
+      animate: { opacity: 1 },
+      transition: { duration: 0.5, delay: 0.2 }
+    },
+    features: {
+      initial: { opacity: 0 },
+      animate: { opacity: 1 },
+      transition: { staggerChildren: 0.1, delayChildren: 0.3 }
+    },
+    feature: {
+      initial: { opacity: 0, x: -10 },
+      animate: { opacity: 1, x: 0 },
+      transition: { duration: 0.3 }
+    }
+  };
+
+  // Choose which animation set to use based on the current mode
+  const animations = isUXMode 
+    ? uxAnimations 
+    : isBalancedMode 
+      ? balancedAnimations 
+      : uiAnimations;
 
   return (
-    <section className={`hero-section ${isUXMode ? '' : 'overflow-hidden'}`} id="hero">
+    <section className={`hero-section ${isUXMode ? '' : isBalancedMode ? 'bg-[var(--section-bg)]' : 'overflow-hidden'}`} id="hero">
       <div className="container">
         {isUXMode ? (
           // UX-Focused Hero - Extremely functional, clear, and accessible with minimal styling
@@ -149,6 +192,133 @@ export function HeroSection() {
                     <p className="text-sm">User Experience (UX) design focuses on the overall feel of the experience and how users interact with a product. Good UX design is functional even when stripped of visual styling.</p>
                   </div>
                 </div>
+              </div>
+            </div>
+            
+            {/* Main content anchor for skip link */}
+            <div id="main-content" className="sr-only">Main content starts here</div>
+          </div>
+        ) : isBalancedMode ? (
+          // Balanced Mode Hero - Good combination of aesthetics and usability
+          <div className="py-4">
+            {/* Skip link for accessibility but styled nicely */}
+            <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:p-2 focus:bg-blue-600 focus:text-white focus:z-50 focus:rounded-md">
+              Skip to main content
+            </a>
+            
+            {/* Mode indicator - informative but visually integrated */}
+            <div className="inline-flex items-center px-3 py-1.5 bg-blue-50 text-blue-800 rounded-md mb-6">
+              <InfoIcon size={14} className="mr-1.5" />
+              <span className="text-sm font-medium">Balanced Mode - Combining aesthetics with usability</span>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-10 items-center">
+              <div className="md:col-span-6">
+                <motion.h1 
+                  {...animations.heading}
+                  className="text-3xl md:text-5xl font-bold text-[var(--text-color)] mb-4"
+                >
+                  Design that <span className="text-[var(--primary-color)]">works</span> and <span className="text-[var(--primary-color)]">delights</span>
+                </motion.h1>
+                
+                <motion.p 
+                  {...animations.paragraph}
+                  className="text-lg text-[var(--text-color)] mb-6 max-w-xl"
+                >
+                  This portfolio showcases the perfect balance between visual appeal and usability, creating an experience that's both beautiful and functional.
+                </motion.p>
+                
+                <motion.div
+                  className="mb-6"
+                  variants={balancedAnimations.features}
+                  initial="initial"
+                  animate="animate"
+                >
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <motion.div variants={balancedAnimations.feature} className="flex items-start">
+                      <div className="mr-3 mt-1 p-1.5 bg-blue-100 rounded-md text-blue-700">
+                        <LayoutPanelLeft size={16} />
+                      </div>
+                      <div>
+                        <h3 className="font-medium mb-1">Visual Appeal</h3>
+                        <p className="text-sm text-[var(--text-light)]">Engaging aesthetics without sacrificing usability</p>
+                      </div>
+                    </motion.div>
+                    
+                    <motion.div variants={balancedAnimations.feature} className="flex items-start">
+                      <div className="mr-3 mt-1 p-1.5 bg-green-100 rounded-md text-green-700">
+                        <MousePointerClick size={16} />
+                      </div>
+                      <div>
+                        <h3 className="font-medium mb-1">Intuitive UX</h3>
+                        <p className="text-sm text-[var(--text-light)]">Clear navigation and accessible interfaces</p>
+                      </div>
+                    </motion.div>
+                    
+                    <motion.div variants={balancedAnimations.feature} className="flex items-start">
+                      <div className="mr-3 mt-1 p-1.5 bg-amber-100 rounded-md text-amber-700">
+                        <Code size={16} />
+                      </div>
+                      <div>
+                        <h3 className="font-medium mb-1">Modern Design</h3>
+                        <p className="text-sm text-[var(--text-light)]">Contemporary aesthetics with proven patterns</p>
+                      </div>
+                    </motion.div>
+                    
+                    <motion.div variants={balancedAnimations.feature} className="flex items-start">
+                      <div className="mr-3 mt-1 p-1.5 bg-purple-100 rounded-md text-purple-700">
+                        <InfoIcon size={16} />
+                      </div>
+                      <div>
+                        <h3 className="font-medium mb-1">Clear Information</h3>
+                        <p className="text-sm text-[var(--text-light)]">Well-organized content hierarchy</p>
+                      </div>
+                    </motion.div>
+                  </div>
+                </motion.div>
+                
+                <motion.div 
+                  {...animations.buttons}
+                  className="flex flex-wrap gap-4"
+                >
+                  <a 
+                    href="#projects" 
+                    className="px-5 py-2.5 bg-[var(--primary-color)] text-white rounded-md font-medium inline-flex items-center hover:bg-[var(--primary-color)]/90 transition-colors"
+                  >
+                    View Projects
+                  </a>
+                  <a 
+                    href="#about" 
+                    className="px-5 py-2.5 bg-white border border-gray-300 rounded-md text-[var(--text-color)] font-medium hover:bg-gray-50 transition-colors inline-flex items-center"
+                  >
+                    Learn More <ArrowRight className="ml-2 h-4 w-4" />
+                  </a>
+                </motion.div>
+              </div>
+              
+              <div className="md:col-span-6">
+                <motion.div 
+                  {...animations.image}
+                  className="relative"
+                >
+                  {/* Subtle background effect */}
+                  <div className="absolute inset-0 -m-4 bg-gradient-to-r from-blue-500/5 to-purple-500/5 rounded-xl"></div>
+                  
+                  {/* Clean, clear image presentation */}
+                  <img 
+                    src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" 
+                    alt="Design showing balanced UI and UX approaches" 
+                    className="relative rounded-lg shadow-md w-full object-cover hover:shadow-lg transition-shadow duration-300"
+                  />
+                  
+                  {/* Informative caption */}
+                  <div className="bg-white p-4 rounded-md shadow-md max-w-md mx-auto -mt-16 relative z-10 border border-gray-100">
+                    <h3 className="font-medium text-[var(--text-color)] mb-1">Why Balance Matters</h3>
+                    <p className="text-sm text-[var(--text-light)]">
+                      A balanced design approach creates experiences that are both visually engaging and highly usable.
+                    </p>
+                  </div>
+                </motion.div>
               </div>
             </div>
             
@@ -292,7 +462,7 @@ export function HeroSection() {
       </div>
       
       {/* Bottom Scroll Indicator - Only in UI Mode - makes it unclear what to do next */}
-      {!isUXMode && (
+      {isUIMode && (
         <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 hidden md:block">
           <motion.div 
             className="flex flex-col items-center text-gray-400"

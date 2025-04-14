@@ -5,7 +5,7 @@ import { ModeToggle } from "@/components/ui/mode-toggle";
 import { Menu, X, Info, Eye, Lightbulb, HelpCircle } from "lucide-react";
 
 export function Header() {
-  const { isUXMode } = useDesignMode();
+  const { mode, isUXMode, isUIMode, isBalancedMode } = useDesignMode();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -16,6 +16,12 @@ export function Header() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const getModeLabel = () => {
+    if (isUXMode) return "UX Mode";
+    if (isUIMode) return "UI Mode";
+    return "Balanced Mode";
+  };
 
   return (
     <header className={`sticky top-0 z-50 site-header ${isScrolled ? 'shadow-md' : ''}`}>
@@ -79,7 +85,7 @@ export function Header() {
               {/* Mode toggle with clear labeling */}
               <div className="hidden md:flex items-center">
                 <div className="mr-3 text-sm flex items-center">
-                  <span className="font-bold mr-1">Current:</span> UX Mode
+                  <span className="font-bold mr-1">Current:</span> {getModeLabel()}
                 </div>
                 <ModeToggle />
               </div>
@@ -114,14 +120,14 @@ export function Header() {
                 </nav>
                 <div className="mt-3 pt-3 border-t border-gray-200 flex items-center justify-between">
                   <div className="text-sm">
-                    <span className="font-bold">Current:</span> UX Mode
+                    <span className="font-bold">Current:</span> {getModeLabel()}
                   </div>
                   <ModeToggle />
                 </div>
               </div>
             )}
           </div>
-        ) : (
+        ) : isUIMode ? (
           // UI-focused header - All style, poor usability
           <div>
             <div className="flex justify-between items-center">
@@ -255,6 +261,138 @@ export function Header() {
                   <div className="mt-4 flex justify-center">
                     <HelpCircle size={18} className="text-gray-300" />
                   </div>
+                </div>
+              </div>
+            )}
+          </div>
+        ) : (
+          // Balanced Mode Header - Good balance of aesthetics and usability
+          <div>
+            {/* Skip to main content link - accessible but not visually distracting */}
+            <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:p-2 focus:bg-blue-600 focus:text-white focus:z-50">
+              Skip to main content
+            </a>
+
+            <div className="flex justify-between items-center">
+              {/* Attractive but clear logo */}
+              <Link href="/">
+                <div className="text-2xl md:text-3xl font-bold cursor-pointer">
+                  <span className="text-[var(--primary-color)]">
+                    Portfolio
+                  </span>
+                </div>
+              </Link>
+
+              {/* Styled but clear mobile menu toggle */}
+              <div className="md:hidden">
+                <button 
+                  onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                  className="p-2 text-[var(--primary-color)] border border-[var(--primary-color)] rounded-md hover:bg-[var(--primary-color)/10] transition-colors"
+                  aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+                  aria-expanded={mobileMenuOpen}
+                >
+                  {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+                </button>
+              </div>
+
+              {/* Attractive navigation with clear usability */}
+              <nav className="hidden md:block">
+                <ul className="flex space-x-6">
+                  <li>
+                    <a 
+                      href="#about" 
+                      className="font-medium py-2 px-1 inline-flex items-center text-[var(--text-color)] hover:text-[var(--primary-color)] transition-colors border-b-2 border-transparent hover:border-[var(--primary-color)]"
+                    >
+                      About
+                    </a>
+                  </li>
+                  <li>
+                    <a 
+                      href="#projects" 
+                      className="font-medium py-2 px-1 inline-flex items-center text-[var(--text-color)] hover:text-[var(--primary-color)] transition-colors border-b-2 border-transparent hover:border-[var(--primary-color)]"
+                    >
+                      Projects
+                    </a>
+                  </li>
+                  <li>
+                    <a 
+                      href="#skills" 
+                      className="font-medium py-2 px-1 inline-flex items-center text-[var(--text-color)] hover:text-[var(--primary-color)] transition-colors border-b-2 border-transparent hover:border-[var(--primary-color)]"
+                    >
+                      Skills
+                    </a>
+                  </li>
+                  <li>
+                    <a 
+                      href="#contact" 
+                      className="font-medium py-2 px-1 inline-flex items-center text-[var(--text-color)] hover:text-[var(--primary-color)] transition-colors border-b-2 border-transparent hover:border-[var(--primary-color)]"
+                    >
+                      Contact
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+
+              {/* Well designed, functional mode toggle */}
+              <div className="hidden md:flex items-center">
+                <div className="flex items-center px-3 py-1 bg-[var(--primary-color)/10] rounded-lg mr-3">
+                  <Info size={14} className="text-[var(--primary-color)] mr-1" />
+                  <span className="text-sm font-medium">{getModeLabel()}</span>
+                </div>
+                <ModeToggle />
+              </div>
+            </div>
+
+            {/* Mobile menu - both attractive and usable */}
+            {mobileMenuOpen && (
+              <div className="md:hidden mt-4 pt-3 border-t border-gray-200">
+                <nav>
+                  <ul className="flex flex-col space-y-3">
+                    <li>
+                      <a 
+                        href="#about" 
+                        className="block py-2 font-medium text-[var(--text-color)] hover:text-[var(--primary-color)] transition-colors"
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        About
+                      </a>
+                    </li>
+                    <li>
+                      <a 
+                        href="#projects" 
+                        className="block py-2 font-medium text-[var(--text-color)] hover:text-[var(--primary-color)] transition-colors"
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        Projects
+                      </a>
+                    </li>
+                    <li>
+                      <a 
+                        href="#skills" 
+                        className="block py-2 font-medium text-[var(--text-color)] hover:text-[var(--primary-color)] transition-colors"
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        Skills
+                      </a>
+                    </li>
+                    <li>
+                      <a 
+                        href="#contact" 
+                        className="block py-2 font-medium text-[var(--text-color)] hover:text-[var(--primary-color)] transition-colors"
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        Contact
+                      </a>
+                    </li>
+                  </ul>
+                </nav>
+
+                <div className="mt-4 pt-3 border-t border-gray-200 flex items-center justify-between">
+                  <div className="flex items-center">
+                    <Info size={14} className="text-[var(--primary-color)] mr-1" />
+                    <span className="text-sm font-medium">{getModeLabel()}</span>
+                  </div>
+                  <ModeToggle />
                 </div>
               </div>
             )}
