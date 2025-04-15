@@ -4,11 +4,9 @@ import { useDesignMode } from "@/contexts/DesignModeContext";
 import { Tooltip } from "@/components/ui/tooltip";
 import { 
   InfoIcon, Mail, Phone, MapPin, 
-  Globe, GraduationCap, Briefcase, User, 
-  Github, ExternalLink
+  Globe, User, ExternalLink
 } from "lucide-react";
 import { FaLinkedinIn } from "react-icons/fa";
-import { SiLeetcode, SiHackerrank } from "react-icons/si";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import { personalInfo } from "@/lib/resumeData";
@@ -215,9 +213,9 @@ export function ContactSection() {
               
               <div>
                 <h4 className={`text-lg font-bold mb-5 ${isBalancedMode ? 'text-[var(--text-color)]' : ''}`}>
-                  {isUXMode ? 'Online Profiles' : isBalancedMode ? 'Professional Profiles' : 'Digital Presence'}
+                  {isUXMode ? 'Professional Profile' : isBalancedMode ? 'LinkedIn Profile' : 'Connect on LinkedIn'}
                 </h4>
-                <div className={`flex flex-wrap gap-3 ${isUXMode ? '' : 'justify-center'}`}>
+                <div className={`flex ${isUXMode ? '' : 'justify-center'}`}>
                   <a 
                     href={`https://${personalInfo.linkedin}`} 
                     target="_blank"
@@ -227,71 +225,14 @@ export function ContactSection() {
                       ${isUXMode 
                         ? 'w-auto px-4 py-2 flex items-center gap-2 rounded bg-blue-100 text-blue-700 hover:bg-blue-200' 
                         : isBalancedMode
-                          ? 'w-10 h-10 rounded-md flex items-center justify-center bg-[var(--primary-color)] text-white hover:opacity-90 transition' 
-                          : 'w-12 h-12 rounded-full flex items-center justify-center ui-element text-white shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1'
+                          ? 'px-5 py-2.5 rounded-md flex items-center gap-2 justify-center bg-[var(--primary-color)] text-white hover:opacity-90 transition' 
+                          : 'px-6 py-3 rounded-full flex items-center gap-2 justify-center ui-element text-white shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1'
                       }
                     `}
                     style={!isBalancedMode && !isUXMode ? { backgroundColor: "var(--primary-color)" } : {}}
                   >
-                    {isUXMode && 'LinkedIn'}
-                    <FaLinkedinIn className={isUXMode ? 'h-4 w-4' : 'h-5 w-5'} />
-                  </a>
-                  
-                  <a 
-                    href="https://github.com/mertaydin9999" 
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="GitHub Profile"
-                    className={`
-                      ${isUXMode 
-                        ? 'w-auto px-4 py-2 flex items-center gap-2 rounded bg-gray-100 text-gray-700 hover:bg-gray-200' 
-                        : isBalancedMode
-                          ? 'w-10 h-10 rounded-md flex items-center justify-center bg-gray-800 text-white hover:opacity-90 transition' 
-                          : 'w-12 h-12 rounded-full flex items-center justify-center ui-element text-white shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1'
-                      }
-                    `}
-                    style={!isBalancedMode && !isUXMode ? { backgroundColor: "var(--secondary-color)" } : {}}
-                  >
-                    {isUXMode && 'GitHub'}
-                    <Github className={isUXMode ? 'h-4 w-4' : 'h-5 w-5'} />
-                  </a>
-                  
-                  <a 
-                    href="https://leetcode.com/baydin2" 
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="LeetCode Profile"
-                    className={`
-                      ${isUXMode 
-                        ? 'w-auto px-4 py-2 flex items-center gap-2 rounded bg-yellow-100 text-yellow-700 hover:bg-yellow-200' 
-                        : isBalancedMode
-                          ? 'w-10 h-10 rounded-md flex items-center justify-center bg-yellow-500 text-white hover:opacity-90 transition' 
-                          : 'w-12 h-12 rounded-full flex items-center justify-center ui-element text-white shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1'
-                      }
-                    `}
-                    style={!isBalancedMode && !isUXMode ? { backgroundColor: "var(--accent-color)" } : {}}
-                  >
-                    {isUXMode && 'LeetCode'}
-                    <SiLeetcode className={isUXMode ? 'h-4 w-4' : 'h-5 w-5'} />
-                  </a>
-                  
-                  <a 
-                    href="https://www.hackerrank.com/profile/bugra_mert2001" 
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="HackerRank Profile"
-                    className={`
-                      ${isUXMode 
-                        ? 'w-auto px-4 py-2 flex items-center gap-2 rounded bg-green-100 text-green-700 hover:bg-green-200' 
-                        : isBalancedMode
-                          ? 'w-10 h-10 rounded-md flex items-center justify-center bg-green-600 text-white hover:opacity-90 transition' 
-                          : 'w-12 h-12 rounded-full flex items-center justify-center ui-element text-white shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1'
-                      }
-                    `}
-                    style={!isBalancedMode && !isUXMode ? { backgroundColor: "var(--primary-color)" } : {}}
-                  >
-                    {isUXMode && 'HackerRank'}
-                    <SiHackerrank className={isUXMode ? 'h-4 w-4' : 'h-5 w-5'} />
+                    <FaLinkedinIn className="h-5 w-5" />
+                    <span>{isUXMode ? 'LinkedIn Profile' : 'Connect on LinkedIn'}</span>
                   </a>
                 </div>
               </div>
