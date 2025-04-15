@@ -93,47 +93,47 @@
   }
 
   .balanced-mode {
-    /* Balanced Mode - Proper balance of aesthetics and usability */
-    --primary-color: #3B82F6; /* Vibrant but accessible blue */
-    --secondary-color: #4B5563;
-    --accent-color: #10B981; /* Pleasant green accent */
+    /* Balanced Mode - Closer to UX but with some aesthetic improvements */
+    --primary-color: #1D70B8; /* Same as UX mode for consistency */
+    --secondary-color: #333333; /* Dark gray instead of pure black */
+    --accent-color: #d53880; /* Same as UX mode */
     --background-color: #FFFFFF;
-    --section-bg: #F9FAFB;
-    --text-color: #111827;
-    --text-light: #4B5563; /* Readable secondary text */
-    --link-color: #2563EB;
+    --section-bg: #F3F2F1; /* Same as UX mode */
+    --text-color: #0B0C0C; /* Same as UX mode */
+    --text-light: #505a5f; /* Same as UX mode */
+    --link-color: #1D70B8; /* Same as UX mode */
     --card-bg: #FFFFFF;
-    --heading-font: 'Outfit', sans-serif; /* Modern but readable */
-    --body-font: 'Inter', sans-serif; /* Highly readable */
-    --transition-speed: 0.3s; /* Smooth but not slow */
-    --spacing: 4rem; /* Balanced spacing */
-    --container-padding: 1.5rem;
-    --border-radius: 0.5rem; /* Moderate rounded corners */
-    --button-radius: 0.375rem;
-    --shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Subtle shadows */
+    --heading-font: 'Inter', sans-serif; /* Same as UX mode */
+    --body-font: 'Public Sans', sans-serif; /* Same as UX mode */
+    --transition-speed: 0.2s; /* Fast transitions like UX mode */
+    --spacing: 2.5rem; /* Slightly more spacing than UX mode */
+    --container-padding: 1.25rem;
+    --border-radius: 4px; /* Slight rounding, not flat like UX but not excessive */
+    --button-radius: 4px;
+    --shadow: 0 2px 6px rgba(0, 0, 0, 0.05); /* Very subtle shadow */
     --text-shadow: none;
     
     /* ShadCN Variables */
     --background: 0 0% 100%;
-    --foreground: 222 47% 11%;
+    --foreground: 0 0% 0%;
     --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
+    --card-foreground: 0 0% 0%;
     --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
-    --primary: 221 83% 53%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 215 19% 35%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215 16% 47%;
-    --accent: 142 71% 45%;
-    --accent-foreground: 210 40% 98%;
+    --popover-foreground: 0 0% 0%;
+    --primary: 210 83% 41%; /* Same as UX mode */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 20%; /* Dark gray instead of pure black */
+    --secondary-foreground: 0 0% 100%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+    --accent: 330 81% 51%; /* Same as UX mode */
+    --accent-foreground: 0 0% 100%;
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 221 83% 53%;
-    --radius: 0.5rem;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 210 83% 41%;
+    --radius: 4px;
   }
   
   /* Set default values for when no mode class is applied */
@@ -256,23 +256,22 @@
     border-bottom: 1px solid #E5E7EB;
   }
 
-  /* Balanced Mode specific base styling */
+  /* Balanced Mode specific base styling - using UX styling as base */
   .balanced-mode h1 {
-    @apply text-3xl md:text-5xl font-bold;
+    @apply text-3xl md:text-4xl font-bold;
     color: var(--text-color);
-    margin-bottom: 1.25rem;
+    margin-bottom: 1rem;
   }
   
   .balanced-mode h2 {
     @apply text-2xl md:text-3xl font-semibold;
-    margin-bottom: 1.25rem;
+    margin-bottom: 1rem;
     color: var(--text-color);
   }
   
   .balanced-mode section {
-    position: relative;
+    border-bottom: 1px solid #E5E7EB;
     background-color: var(--background-color);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
   }
   
   .balanced-mode section:nth-child(odd) {
@@ -324,12 +323,13 @@
   }
   
   /* Hero section styles */
-  :root:not(.ux-mode) .hero-section {
+  :root:not(.ux-mode):not(.balanced-mode) .hero-section {
     @apply min-h-[90vh] flex items-center;
     background: radial-gradient(circle at top right, rgba(108, 99, 255, 0.1) 0%, rgba(255, 51, 102, 0.05) 50%, transparent 100%);
   }
   
-  .ux-mode .hero-section {
+  .ux-mode .hero-section,
+  .balanced-mode .hero-section {
     @apply min-h-[60vh] flex items-center;
     background: none;
   }
@@ -496,27 +496,29 @@
   }
   
   /* Header styles */
-  :root:not(.ux-mode) .site-header {
+  :root:not(.ux-mode):not(.balanced-mode) .site-header {
     @apply py-6;
     background-color: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
     box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
   }
   
-  .ux-mode .site-header {
+  .ux-mode .site-header,
+  .balanced-mode .site-header {
     @apply py-4;
     background-color: var(--background-color);
     border-bottom: 1px solid #E5E7EB;
   }
   
   /* Footer styles */
-  :root:not(.ux-mode) .site-footer {
+  :root:not(.ux-mode):not(.balanced-mode) .site-footer {
     @apply py-12;
     background: linear-gradient(to right, #1A1A1A, #333333);
     color: white;
   }
   
-  .ux-mode .site-footer {
+  .ux-mode .site-footer,
+  .balanced-mode .site-footer {
     @apply py-8;
     background-color: #1D1D1D;
     color: white;
@@ -529,20 +531,21 @@
   }
   
   /* Contact section styles */
-  :root:not(.ux-mode) .contact-section {
+  :root:not(.ux-mode):not(.balanced-mode) .contact-section {
     background: linear-gradient(135deg, rgba(255, 51, 102, 0.05) 0%, rgba(108, 99, 255, 0.1) 100%);
   }
   
-  .ux-mode .contact-section {
+  .ux-mode .contact-section,
+  .balanced-mode .contact-section {
     background-color: var(--section-bg);
   }
   
   /* About section styles */
-  :root:not(.ux-mode) .about-section {
+  :root:not(.ux-mode):not(.balanced-mode) .about-section {
     position: relative;
   }
   
-  :root:not(.ux-mode) .about-section:after {
+  :root:not(.ux-mode):not(.balanced-mode) .about-section:after {
     content: '';
     position: absolute;
     bottom: 0;
