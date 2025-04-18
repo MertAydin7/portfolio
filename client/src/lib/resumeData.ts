@@ -17,7 +17,7 @@ export const education = [
     school: "Binghamton University, State University of New York",
     college: "Thomas J. Watson College of Engineering and Applied Science",
     degree: "Bachelor of Science in Computer Science",
-    date: "May 2024",
+    date: "Aug 2020 - May 2024",
     gpa: "3.34/4.00",
     achievements: ["Dean's List: Spring 2021"]
   },
@@ -25,7 +25,7 @@ export const education = [
     school: "Istanbul Technical University",
     college: "Faculty of Computer and Informatics",
     degree: "Bachelor of Science in Information Systems Engineering",
-    date: "May 2024",
+    date: "Sep 2018 - May 2024",
     achievements: ["Certificate of Appreciation"]
   }
 ];
@@ -36,42 +36,49 @@ export const skills = {
     { name: "Python", level: 90 },
     { name: "JavaScript", level: 85 },
     { name: "TypeScript", level: 80 },
+    { name: "Java", level: 85 },
+    { name: "SQL", level: 85 },
     { name: "HTML/CSS", level: 85 },
-    { name: "Java", level: 75 },
     { name: "C++", level: 70 },
     { name: "C", level: 65 },
     { name: "Dart", level: 60 }
   ],
   frameworks: [
-    { name: "React", level: 80 },
+    { name: "React", level: 85 },
     { name: "AngularJS", level: 85 },
-    { name: "TailwindCSS", level: 80 },
-    { name: "Kivy", level: 70 },
-    { name: ".NET", level: 65 }
+    { name: "Node.js", level: 80},
+    { name: "Express", level: 80 },
+    { name: "TailwindCSS", level: 85 },
+    { name: "Kivy", level: 75 },
+    { name: ".NET", level: 70 }
   ],
   dataAnalysis: [
+    { name: "MySQL", level: 85 },
     { name: "Pandas", level: 85 },
     { name: "NumPy", level: 80 },
     { name: "Matplotlib", level: 80 },
-    { name: "Seaborn", level: 75 },
     { name: "Plotly", level: 75 },
     { name: "SQL", level: 85 },
-    { name: "MySQL", level: 80 }
+    
   ],
   tools: [
     { name: "Git", level: 80 },
+    { name: "Vite", level: 80 },
+    { name: "Framer Motion", level: 80 },
     { name: "Excel", level: 85 },
-    { name: "Power BI", level: 75 },
-    { name: "Tableau", level: 75 },
     { name: "MS Office", level: 85 },
     { name: "Binalyze AIR", level: 70 },
-    { name: "KeygenSH", level: 65 },
+    { name: "KeygenSH", level: 75 },
     { name: "OpenCV", level: 70 }
   ]
 };
 
 // Relevant coursework
 export const coursework = [
+  "Data Structures & Algorithms",
+  "Object-Oriented Programming",
+  "Database Systems",
+  "IT Systems Analysis and Design",
   "Data Mining",
   "Human Computer Interaction", 
   "Probability and Statistical Methods", 
@@ -86,10 +93,10 @@ export const workExperience = [
     location: "New York, US",
     period: "Aug 2023 – May 2024",
     responsibilities: [
-      "Developed Angular-based front-end solutions for the Tank Level Monitoring project",
-      "Created responsive UI features using TypeScript, HTML enhancing user experience",
-      "Improved data visualization and introduced a dark mode, dynamic search bar using CSS",
-      "Collaborated in an Agile environment, participating in weekly sprint planning and review meetings"
+      "Developed and maintained responsive web applications using Angular and TypeScript",
+      "Created and enhanced user interfaces with HTML, CSS, and JavaScript to improve user experience and engagement",
+      "Implemented detailed data visualizations for business intelligence solutions, utilizing SVG and Angular animations",
+      "Collaborated in an agile environment, participating in daily stand-ups and sprint meetings"
     ]
   },
   {
@@ -98,10 +105,9 @@ export const workExperience = [
     location: "Ankara, Turkey",
     period: "Jul 2023 – Jul 2023",
     responsibilities: [
-      "Analyzed and cleaned data using Python for efficient data management",
-      "Developed modular Python code, improving maintainability",
-      "Evaluated data sources for reliability and usability",
-      "Worked within an Agile team, participating in daily stand-ups to achieve sprint goals"
+      "Analyzed, cleaned, and interpreted data using Python, ensuring efficient data management and manipulation for applications",
+      "Supported the development of modular and organized code using Python modules, enhancing code maintainability and reusability",
+      "Evaluated data sources for reliability and usability, contributing to improved performance and data quality"
     ]
   },
   {
@@ -110,9 +116,9 @@ export const workExperience = [
     location: "Ankara, Turkey",
     period: "Jun 2023 – Jul 2023",
     responsibilities: [
-      "Conducted secure software licensing with KeygenSH",
-      "Enhanced software efficiency with encapsulated Python packages",
-      "Performed data extraction and quality checks using Binalyze AIR"
+      "Conducted secure software licensing with KeygenSH, supporting controlled software product distribution",
+      "Improved software efficiency through Python encapsulated packages, enhancing code modularity and reusability",
+      "Evaluated data sources and performed in-depth research on RFC3161 standards to implement secure digital data timestamping"
     ]
   }
 ];
@@ -120,16 +126,17 @@ export const workExperience = [
 // Project experience
 export const projects = [
   {
-    title: "UI/UX Design Portfolio Showcase",
-    period: "Apr 2024 – Present",
-    role: "Front-End Developer",
+    title: "Adaptive Portfolio Website with Multi-Mode UI/UX Design System",
+    period: "Apr 2025 – Present",
+    role: "Full Stack Developer",
     type: "Individual Project",
-    description: "Developed a portfolio website featuring a unique three-mode design system that demonstrates the importance of balancing UI and UX in web applications.",
+    description: "Engineered a React-based frontend using TypeScript and TailwindCSS with a component-based architecture.",
     achievements: [
-      "Created an interactive toggle system allowing users to switch between UI-focused, UX-focused, and balanced design modes",
-      "Implemented distinct visual and functional characteristics for each mode using React, TailwindCSS, and Framer Motion",
-      "Built responsive layouts ensuring optimal display across all device sizes",
-      "Utilized modern web development practices including component-based architecture and CSS variables"
+      "Implemented a unique three-mode design system showcasing different approaches to UI/UX design",
+      "Created reusable UI components and custom hooks for enhanced code maintainability",
+      "Built responsive layouts ensuring optimal display across all device sizes using modern CSS techniques",
+      "Integrated dynamic routing and state management for seamless user experience",
+      "Git version control, automated build scripts (npm, esbuild, vite), and cloud deployment via Render simulating CI/CD workflows"
     ],
     image: "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
     technologies: ["React", "TypeScript", "TailwindCSS", "Framer Motion"],
@@ -137,7 +144,7 @@ export const projects = [
   },
   {
     title: "Basic Data Analysis and Visualization Dashboard",
-    period: "May 2024 – Present",
+    period: "May 2024 – Sep 2024",
     role: "Python Developer",
     type: "Individual Project",
     description: "Created an interactive dashboard for data analysis and visualization.",
@@ -168,28 +175,28 @@ export const projects = [
   {
     title: "Spotify Wrapper App",
     period: "Jul 2023 – Aug 2023",
-    role: "Python Co-Developer",
+    role: "Full Stack Developer",
     type: "Group Project",
-    description: "Built an application to display Spotify user analytics with a visual interface.",
+    description: "Designed and implemented a Python-based app to show Spotify user's analytics using the Kivy framework.",
     achievements: [
-      "Designed and implemented a Python-based app to show Spotify user's analytics using the Kivy framework",
-      "Integrated spotipy and moviepy libraries for enhanced functionality",
-      "Conducted unit testing and validation to ensure app reliability and performance"
+      "Built responsive design and interactive buttons for toggling tracking data",
+      "Conducted unit testing and validation using the unittest framework",
+      "Implemented secure data integration with Spotify API"
     ],
     image: "https://images.unsplash.com/photo-1591254674198-a316f1cf8531?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
-    technologies: ["Python", "Kivy", "Spotipy", "Moviepy"],
+    technologies: ["Python", "Kivy", "Unittest", "Spotify API"],
     category: "Application Development"
   },
   {
     title: "Railway Reservation System",
-    period: "Apr 2023 – May 2023",
+    period: "Jan 2023 – May 2023",
     role: "Python Developer",
     type: "Individual Project",
-    description: "Created a command-line system for managing railway reservations.",
+    description: "Designed and implemented a relational database system using MySQL to manage railway reservations.",
     achievements: [
-      "Designed and implemented a MySQL database system to manage railway reservations",
-      "Developed a command-line interface for user interaction and ensured data accuracy",
-      "Managed data integration and implemented error handling mechanisms"
+      "Developed a command-line interface (CLI) for user interaction",
+      "Implemented error handling mechanisms to secure data accuracy",
+      "Designed and managed relational database structure"
     ],
     image: "https://images.unsplash.com/photo-1474487548417-781cb71495f3?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
     technologies: ["Python", "MySQL", "CLI Development"],
@@ -197,14 +204,14 @@ export const projects = [
   },
   {
     title: "Road Line Detection",
-    period: "Apr 2023 – May 2023",
+    period: "Jan 2023 – May 2023",
     role: "Python Developer",
     type: "Individual Project",
-    description: "Implemented computer vision techniques to detect road lines in images and videos.",
+    description: "Developed a road line detection system using OpenCV and computer vision techniques.",
     achievements: [
-      "Developed a road line detection system using OpenCV and computer vision techniques",
       "Implemented Canny Edge Detection and Hough Transform algorithms",
-      "Enhanced detection accuracy through noise handling and performance optimization"
+      "Optimized performance by fine tuning parameters",
+      "Tested with over 500 images from Kaggle's dataset"
     ],
     image: "https://images.unsplash.com/photo-1502740479091-635887520276?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
     technologies: ["Python", "OpenCV", "Computer Vision"],
@@ -218,12 +225,12 @@ export const leadership = [
     organization: "ITU-BINGO Community",
     position: "Founder and President",
     location: "Istanbul, Turkey",
-    period: "Sep 2022 – Present",
+    period: "Sep 2022 – Jan 2025",
     responsibilities: [
       "Formed a community to support and connect Turkish SUNY students, got over 50 registrations in the first month",
       "Received a Certificate of Appreciation from the President of ITU in recognition of founding and successfully leading the community",
-      "Hosted over 10 events including zoom events bridging SUNY students and alumni worldwide to share post-graduation career insights",
-      "Actively mentoring more than 10 students and planning accommodations, and transportations for the newcomers"
+      "Hosted over 10 events bridging SUNY students and alumni worldwide to share post-graduation career insights",
+      "Mentored more than 5 students, managed their accommodations and transportations before arrival to US"
     ]
   }
 ];
